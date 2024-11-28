@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.Json;
 
-namespace WebServer;
+namespace Stratus;
 public struct Payload {
 	public byte[]? Content { get; set; }
 	public string? ContentType { get; set; }

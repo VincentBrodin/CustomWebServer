@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomWebServer", "CustomWebServer\CustomWebServer.csproj", "{507ADF4D-9BE6-4A0C-9383-88341401D292}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoProject", "DemoProject\DemoProject.csproj", "{507ADF4D-9BE6-4A0C-9383-88341401D292}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebServer", "WebServer\WebServer.csproj", "{14128021-0F04-4FCA-BDF4-7872DCDDB2CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stratus", "Stratus\Stratus.csproj", "{14128021-0F04-4FCA-BDF4-7872DCDDB2CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{941DFB51-F204-4C9F-9A86-19F073E35F09}"
 	ProjectSection(SolutionItems) = preProject

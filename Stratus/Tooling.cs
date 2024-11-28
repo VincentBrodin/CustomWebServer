@@ -1,4 +1,4 @@
-﻿namespace WebServer;
+﻿namespace Stratus;
 internal static class Tooling {
 	public static string TerminalURL(string caption, string url) => $"\u001B]8;;{url}\a{caption}\u001B]8;;\a";
 

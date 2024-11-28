@@ -1,7 +1,7 @@
 ﻿using HandlebarsDotNet;
 using System.Text;
 
-namespace WebServer;
+namespace Stratus;
 public class Renderer(Server connectedServer) {
 	public Server Server { get; set; } = connectedServer;
 	private string layoutTemplate = "";
@@ -13,6 +13,7 @@ public class Renderer(Server connectedServer) {
 
 		var context = new {
 			title = title ?? $"{pageName} | Website",
+			page = pageName,
 			body = page(pageData),
 		};
 

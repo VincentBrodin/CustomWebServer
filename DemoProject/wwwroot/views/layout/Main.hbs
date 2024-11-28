@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html data-bs-theme="dark">
+<head>
+    <title>{{title}}</title>
+    <link rel="icon" type="image/x-icon" href="/wwwroot/images/bus-front.svg">
+    <link rel="stylesheet" href="/wwwroot/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/wwwroot/css/Index.css" />
+    <script src="/wwwroot/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid d-flex flex-column min-vh-100">
+        {{>Nav}}
+        <div class="flex-grow-1 border rounded my-2 shadow d-flex">
+            {{{body}}}
+        </div>
+        {{>Footer}}
+    </div>
+
+    <script src="/wwwroot/js/Index.js"></script>
+</body>
+</html>

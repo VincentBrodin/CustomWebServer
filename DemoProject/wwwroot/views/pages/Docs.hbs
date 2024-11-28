@@ -1,0 +1,41 @@
+﻿<div class="container mt-4 mb-2">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {{#each breadcrumbs}}
+            {{#if @last}}
+            <li class="breadcrumb-item active" aria-current="page">{{Title}}</li>
+            {{else}}
+            <li class="breadcrumb-item"><a href="/{{Path}}">{{Title}}</a></li>
+            {{/if}}
+            {{/each}}
+        </ol>
+        <hr />
+    </nav>
+
+    <div class="my-3">
+        {{{page.Content}}}
+    </div>
+
+
+    {{#if page.HasChildren}}
+    <hr />
+    <div>
+        <h5 class="mb-3">Related Pages</h5>
+        <ul class="list-unstyled">
+            {{#each page.Children}}
+            <li class="mb-2">
+                {{#if HasChildren}}
+                <i class="me-1 fi i-folder"></i>
+                <a href="/{{Path}}">{{Title}}</a>
+                {{else}}
+                <i class="me-1 fi i-file"></i>
+                <a href="/{{Path}}">{{Title}}</a>
+                {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if }}
+
+</div>

@@ -8,7 +8,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\WebServer\WebServer.csproj" />
+	  <PackageReference Include="Markdig" Version="0.38.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Stratus\Stratus.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

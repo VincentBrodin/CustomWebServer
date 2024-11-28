@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace WebServer;
+namespace Stratus;
 
 public enum Methods {
 	GET,
