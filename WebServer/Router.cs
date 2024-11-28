@@ -7,7 +7,7 @@ public enum Methods {
 	POST
 }
 
-public delegate (byte[], string)? HandlerMethod(HttpListenerContext context, Dictionary<string, string> parameters);
+public delegate Payload HandlerMethod(HttpListenerContext context, Dictionary<string, string> parameters);
 
 public class Route(string path, Methods method, HandlerMethod handler) {
 	public string Path { get; set; } = path;
@@ -21,7 +21,7 @@ public class Router {
 	public bool HandleStaticFiles = false;
 	public string StaticFilesRoot { get; set; } = "/wwwroot";
 	public HandlerMethod StaticFilesHandler { get; set; } = (context, parameters) => {
-		return null;
+		return new Payload(404);
 	};
 
 	public void Post(string path, HandlerMethod handler) {
@@ -32,11 +32,11 @@ public class Router {
 		routes.Add(new Route(path, Methods.GET, handler));
 	}
 
-	public (byte[], string)? MatchRoute(HttpListenerContext context) {
+	public Payload MatchRoute(HttpListenerContext context) {
 		HttpListenerRequest request = context.Request;
 
 		if (request.Url == null) {
-			return null;
+			return new Payload(404);
 		}
 
 		string path = request.Url.AbsolutePath;
@@ -46,11 +46,11 @@ public class Router {
 			}
 
 			//Serve static files
-			if (HandleStaticFiles 
+			if (HandleStaticFiles
 				&& path.GetFirst(StaticFilesRoot.Length) == StaticFilesRoot) {
 				Console.WriteLine("Static files on the move :)");
 				Dictionary<string, string> parameters = [];
-				parameters.Add("path", path.GetEndFromStart(StaticFilesRoot.Length+1));
+				parameters.Add("path", path.GetEndFromStart(StaticFilesRoot.Length + 1));
 				return StaticFilesHandler(context, parameters);
 			}
 			else {
@@ -61,7 +61,7 @@ public class Router {
 			}
 		}
 
-		return null;
+		return new Payload(404);
 	}
 
 	private (bool, Dictionary<string, string>) ExtractRouteParams(string requestPath, string routePath) {
