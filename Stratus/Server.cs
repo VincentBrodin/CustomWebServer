@@ -43,7 +43,6 @@ public class Server {
 	/// <summary>
 	/// The html that will be sent if an error occurs
 	/// </summary>
-	public string Error { get; set; } = "<HTML><BODY>404 Not Found</BODY></HTML>";
 
 	public Server() {
 		Router.HandleStaticFiles = true;
@@ -59,7 +58,7 @@ public class Server {
 	/// </summary>
 	/// <param name="path">Path to any file, the file does not need to exist</param>
 	/// <returns>A string in the form of {value}/{value}</returns>
-	private string GetContentType(string path) {
+	private static string GetContentType(string path) {
 		string extension = Path.GetExtension(path).ToLower();
 
 		return extension switch {
@@ -84,13 +83,11 @@ public class Server {
 	/// <returns>Null or a tuple of the content in bytes and the content type as a string</returns>
 	public Payload Root(string path) {
 		string rootPath = Path.Combine(wwwroot, path);
-		Console.WriteLine($"Looking for {path} in wwwroot ({rootPath})");
 		if (File.Exists(rootPath)) {
 			string contentType = GetContentType(rootPath);
 			return new Payload(File.ReadAllBytes(rootPath), contentType, 200);
 		}
-		Console.WriteLine($"{path} is not in wwwroot ({rootPath})");
-		return new Payload(null, null, 404);
+		return new Payload(404);
 	}
 
 	/// <summary>
@@ -103,7 +100,7 @@ public class Server {
 		if (File.Exists(rootPath)) {
 			return File.ReadAllText(rootPath);
 		}
-		return Error;
+		return "";
 	}
 
 	/// <summary>
@@ -183,26 +180,16 @@ public class Server {
 			Payload routeOutput = Router.MatchRoute(context);
 
 			if (routeOutput.Empty()) {
-				byte[] buffer = Encoding.UTF8.GetBytes(Error);
-				response.ContentLength64 = buffer.Length;
-				response.ContentType = "text/html";
-
-				response.StatusCode = routeOutput.Status;
-
-				Stream output = response.OutputStream;
-				output.Write(buffer, 0, buffer.Length);
-				output.Close();
+				routeOutput = Renderer.RenderPage("Error", new { status = routeOutput.Status }, routeOutput.Status);
 			}
-			else {
-				byte[] buffer = routeOutput.Content!;
-				response.ContentLength64 = buffer.Length;
-				response.ContentType = routeOutput.ContentType!;
-				response.StatusCode = routeOutput.Status;
+			byte[] buffer = routeOutput.Content!;
+			response.ContentLength64 = buffer.Length;
+			response.ContentType = routeOutput.ContentType!;
+			response.StatusCode = routeOutput.Status;
 
-				Stream output = response.OutputStream;
-				output.Write(buffer, 0, buffer.Length);
-				output.Close();
-			}
+			Stream output = response.OutputStream;
+			output.Write(buffer, 0, buffer.Length);
+			output.Close();
 		}
 		catch (Exception exception) {
 			// Handle errors here (e.g., log to a file, etc.)

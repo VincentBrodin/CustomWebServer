@@ -1,12 +1,11 @@
-﻿using HandlebarsDotNet;
+﻿using CustomWebServer;
+using HandlebarsDotNet;
 using Stratus;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
-namespace CustomWebServer;
+namespace DemoProject;
 
 public static class Program {
-	public static async Task<int> Main(string[] args) {
+	public static async Task<int> Main(string[] _) {
 		Handlebars.RegisterHelper("setActive", (context, arguments) => {
 			string? currentPage = arguments[0]?.ToString();
 			string? linkPage = arguments[1]?.ToString();
@@ -24,8 +23,6 @@ public static class Program {
 
 		DocsHelper docs = new(server.RootPath("Docs"));
 		docs.RouteDocs(server);
-
-		server.Error = server.RootAsText("error.html");
 
 		server.Router.Get("/", (context, parameters) => {
 			return server.Renderer.RenderPage("Home", new {
@@ -46,7 +43,7 @@ public static class Program {
 
 
 		server.Router.Post("/search", (context, parameters) => {
-			return server.BakeJson(new { results=staticRoutes }, 200);
+			return server.BakeJson(new { results = staticRoutes }, 200);
 		});
 
 		await server.Start();

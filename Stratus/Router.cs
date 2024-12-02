@@ -48,7 +48,6 @@ public class Router {
 			//Serve static files
 			if (HandleStaticFiles
 				&& path.GetFirst(StaticFilesRoot.Length) == StaticFilesRoot) {
-				Console.WriteLine("Static files on the move :)");
 				Dictionary<string, string> parameters = [];
 				parameters.Add("path", path.GetEndFromStart(StaticFilesRoot.Length + 1));
 				return StaticFilesHandler(context, parameters);
@@ -64,7 +63,7 @@ public class Router {
 		return new Payload(404);
 	}
 
-	private (bool, Dictionary<string, string>) ExtractRouteParams(string requestPath, string routePath) {
+	private static (bool, Dictionary<string, string>) ExtractRouteParams(string requestPath, string routePath) {
 		Dictionary<string, string> parameters = [];
 
 		string[] requestSegments = requestPath.Trim('/').Split('/');
