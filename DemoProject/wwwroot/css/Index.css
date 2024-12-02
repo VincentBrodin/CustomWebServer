@@ -1,17 +1,18 @@
-﻿.fi {
+﻿* {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.fi {
     display: inline-block;
     width: 0.8em;
     height: 0.8em;
     fill: currentColor;
 }
-
-pre {
-    background-color: #2e2e2e;
-    color: #f8f8f2;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    overflow-x: auto;
-    font-size: 1rem;
-    white-space: pre-wrap;
+pre, code {
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
 }

@@ -26,10 +26,10 @@
             {{#each page.Children}}
             <li class="mb-2">
                 {{#if HasChildren}}
-                <i class="me-1 fi i-folder"></i>
+                <i class="bi bi-archive"></i>
                 <a href="/{{Path}}">{{Title}}</a>
                 {{else}}
-                <i class="me-1 fi i-file"></i>
+                <i class="bi bi-file-earmark"></i>
                 <a href="/{{Path}}">{{Title}}</a>
                 {{/if}}
             </li>

@@ -7,30 +7,44 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="#navbar">
+        <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link {{setActive page 'Home'}}" href="/">Home</a>
+                    <a class="nav-link {{setActive page 'Home'}}" href="/">
+                        <i class="bi bi-house"></i>
+                        Home
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{setActive page 'Docs'}}" href="/docs">Docs</a>
+                    <a class="nav-link {{setActive page 'Docs'}}" href="/docs">
+                        <i class="bi bi-braces"></i>
+                        Docs
+                    </a>
                 </li>
             </ul>
 
             <div class="flex-grow-1 d-flex justify-content-center">
                 <form class="d-flex" role="search" id="searchForm">
                     <input id="searchBar" class="form-control me-2" type="search" placeholder="Search the docs..." aria-label="Search" list="searchResults">
-                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
                 </form>
             </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{setActive page 'About'}}" href="/about">About</a>
+                    <a class="nav-link {{setActive page 'About'}}" href="/about">
+                        <i class="bi bi-info-circle"></i>
+                        About
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/VincentBrodin/Stratus">Github</a>
+                    <a class="nav-link" href="https://github.com/VincentBrodin/Stratus">
+                        <i class="bi bi-github"></i>
+                        Github
+                    </a>
                 </li>
 
             </ul>
