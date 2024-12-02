@@ -53,6 +53,8 @@ public class DocsHelper {
 	public Page RootPage { get; set; }
 
 	public DocsHelper(string rootFolder) {
+		MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+
 		string[] subDirectories = Directory.GetDirectories(rootFolder);
 		string[] files = Directory.GetFiles(rootFolder);
 
@@ -64,11 +66,11 @@ public class DocsHelper {
 			string pageName = Path.GetFileNameWithoutExtension(file);
 
 			if (pageName == folderName) {
-				RootPage.Content = Markdown.ToHtml(File.ReadAllText(mdFilePath));
+				RootPage.Content = Markdown.ToHtml(File.ReadAllText(mdFilePath), pipeline);
 				continue;
 			}
 
-			string content = Markdown.ToHtml(File.ReadAllText(file));
+			string content = Markdown.ToHtml(File.ReadAllText(file), pipeline);
 			Page page = new(CamelToSentence(pageName), content, RootPage);
 			RootPage.Children.Add(page);
 		}
@@ -100,6 +102,9 @@ public class DocsHelper {
 
 
 	private void BuildTree(string folder, Page parentPage) {
+
+		MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+
 		string[] subDirectories = Directory.GetDirectories(folder);
 		string[] files = Directory.GetFiles(folder);
 
@@ -109,7 +114,7 @@ public class DocsHelper {
 		Page currentPage = new(CamelToSentence(folderName), "", parentPage, true);
 		parentPage.Children.Add(currentPage);
 		if (File.Exists(mdFilePath)) {
-			currentPage.Content = File.ReadAllText(mdFilePath);
+			currentPage.Content = Markdown.ToHtml(File.ReadAllText(mdFilePath), pipeline);
 		}
 
 		foreach (string file in files) {
@@ -119,7 +124,7 @@ public class DocsHelper {
 				continue;
 			}
 
-			string pageContent = File.ReadAllText(file);
+			string pageContent = Markdown.ToHtml(File.ReadAllText(file), pipeline);
 			Page page = new(CamelToSentence(pageName), pageContent, currentPage);
 			currentPage.Children.Add(page);
 		}

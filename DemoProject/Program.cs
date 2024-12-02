@@ -34,7 +34,6 @@ public static class Program {
 			}, 200);
 		});
 
-
 		server.Start();
 		Console.WriteLine("Server died");
 		return 0;
