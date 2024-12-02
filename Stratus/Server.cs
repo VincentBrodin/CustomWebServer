@@ -23,6 +23,7 @@ public struct Payload {
 }
 
 public class Server {
+	public string Name { get; set; } = "Website";
 	public HttpListener Listener { get; } = new();
 	public Router Router { get; } = new();
 	public Renderer Renderer { get; }
@@ -146,7 +147,7 @@ public class Server {
 	/// <summary>
 	/// Starts the server
 	/// </summary>
-	public void Start() {
+	public async Task Start() {
 		Renderer.RegisterPartials();
 		Running = true;
 
@@ -158,14 +159,21 @@ public class Server {
 		Console.WriteLine($"Server is running @ {Tooling.TerminalURL(BaseUrl, BaseUrl)}");
 		while (Running) {
 			//Task.Run(() => { HandleRequest(Listener.GetContext()); }); //Seems to leak????
-			HandleRequest(Listener.GetContext());
+			HttpListenerContext context = await Listener.GetContextAsync();
+			_ = HandleRequestAsync(context);
 		}
 
 		Listener.Stop();
 	}
 
+	private async Task HandleRequestAsync(HttpListenerContext context) {
+		await Task.Run(() => { HandleRequest(context); });
+	}
+
+
 	private void HandleRequest(HttpListenerContext context) {
 		try {
+
 			HttpListenerRequest request = context.Request;
 			HttpListenerResponse response = context.Response;
 

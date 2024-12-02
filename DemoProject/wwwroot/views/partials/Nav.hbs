@@ -1,8 +1,8 @@
 ﻿<nav class="navbar navbar-expand-md sticky-top border rounded mt-2 shadow" style="background-color: var(--bs-body-bg);">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="/wwwroot/images/bus-front.svg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-            Docs
+        <a class="navbar-brand" href="/">
+            <img src="/wwwroot/icons/stratus.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            Stratus
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,16 +17,28 @@
                     <a class="nav-link {{setActive page 'Docs'}}" href="/docs">Docs</a>
                 </li>
             </ul>
+
+            <div class="flex-grow-1 d-flex justify-content-center">
+                <form class="d-flex" role="search" id="searchForm">
+                    <input id="searchBar" class="form-control me-2" type="search" placeholder="Search the docs..." aria-label="Search" list="searchResults">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
+            </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link {{setActive page 'About'}}" href="/about">About</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">Github</a>
+                    <a class="nav-link" href="https://github.com/VincentBrodin/Stratus">Github</a>
                 </li>
 
             </ul>
         </div>
     </div>
 </nav>
+
+<datalist id="searchResults">
+</datalist>
+
+<script src="/wwwroot/js/SearchBar.js"></script>

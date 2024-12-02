@@ -1,10 +1,12 @@
 ﻿using HandlebarsDotNet;
 using Stratus;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace CustomWebServer;
 
 public static class Program {
-	public static int Main(string[] args) {
+	public static async Task<int> Main(string[] args) {
 		Handlebars.RegisterHelper("setActive", (context, arguments) => {
 			string? currentPage = arguments[0]?.ToString();
 			string? linkPage = arguments[1]?.ToString();
@@ -16,7 +18,9 @@ public static class Program {
 			return currentPage == linkPage ? "active" : "";
 		});
 
-		Server server = new();
+		Server server = new() {
+			Name = "Stratus"
+		};
 
 		DocsHelper docs = new(server.RootPath("Docs"));
 		docs.RouteDocs(server);
@@ -25,7 +29,7 @@ public static class Program {
 
 		server.Router.Get("/", (context, parameters) => {
 			return server.Renderer.RenderPage("Home", new {
-			}, 200, "Docs");
+			}, 200, "Stratus");
 		});
 
 
@@ -34,7 +38,18 @@ public static class Program {
 			}, 200);
 		});
 
-		server.Start();
+		var (titles, paths) = docs.GetStaticRoutes();
+		object staticRoutes = titles.Zip(paths, (title, path) => new {
+			title,
+			path
+		});
+
+
+		server.Router.Post("/search", (context, parameters) => {
+			return server.BakeJson(new { results=staticRoutes }, 200);
+		});
+
+		await server.Start();
 		Console.WriteLine("Server died");
 		return 0;
 	}

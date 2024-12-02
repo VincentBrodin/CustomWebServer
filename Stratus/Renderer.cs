@@ -12,7 +12,7 @@ public class Renderer(Server connectedServer) {
 		var page = Handlebars.Compile(pagesTemplates[pageName]);
 
 		var context = new {
-			title = title ?? $"{pageName} | Website",
+			title = title ?? $"{Server.Name} | {pageName}",
 			page = pageName,
 			body = page(pageData),
 		};

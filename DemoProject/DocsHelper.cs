@@ -84,6 +84,23 @@ public class DocsHelper {
 		Route(RootPage, server);
 	}
 
+	public (List<string>, List<string>) GetStaticRoutes() {
+		List<string> titles = [];
+		List<string> paths = [];
+
+		FillRoutes(RootPage, titles, paths);
+		return (titles, paths);
+	}
+
+	private void FillRoutes(Page page, List<string> titles, List<string> paths) {
+		titles.Add(page.Title);
+		paths.Add(page.Path);
+
+		foreach(Page subPage in page.Children) {
+			FillRoutes(subPage, titles, paths);
+		}
+	}
+
 	private void Route(Page page, Server server) {
 		Console.WriteLine($"Bound: {page.Path}");
 
@@ -93,7 +110,7 @@ public class DocsHelper {
 			return server.Renderer.RenderPage("Docs", new {
 				page,
 				breadcrumbs,
-			}, 200);
+			}, 200, $"{server.Name} | {page.Title}");
 		});
 		foreach (Page child in page.Children) {
 			Route(child, server);
