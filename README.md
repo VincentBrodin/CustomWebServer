@@ -8,4 +8,4 @@ Stratus provides a simple and customizable structure that allows developers to c
 
 ## Getting Started
 
-To get started with Stratus, please check out our [installation guide](/docs/installation).
+To get started with Stratus, please check out our [installation guide](DemoProject/wwwroot/Docs/Installation).
