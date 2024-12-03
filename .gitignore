@@ -400,3 +400,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 starship.toml
+
+/DemoProject/wwwroot/lib/
