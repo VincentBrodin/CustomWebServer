@@ -401,4 +401,4 @@ FodyWeavers.xsd
 
 starship.toml
 
-/DemoProject/wwwroot/lib/
+DemoProject/wwwroot/lib/

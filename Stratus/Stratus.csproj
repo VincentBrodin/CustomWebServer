@@ -4,7 +4,34 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Stratus</Title>
+    <Version>$(VersionPrefix)</Version>
+    <ApplicationIcon>stratus.ico</ApplicationIcon>
+    <Authors>Vincent Brodin</Authors>
+    <Description>Lightweightweb-app framework.</Description>
+    <PackageIcon>stratus.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression> GPL-3.0-or-later</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/VincentBrodin/Stratus.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="stratus.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\DemoProject\wwwroot\icons\stratus.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Handlebars.Net" Version="2.1.6" />
