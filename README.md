@@ -1,11 +1,11 @@
-# Custom Web Server
+# Stratus Documentation
 
-This project is a deep dive into understanding how web servers operate.
-It uses a built-in HTTP listener, but everything on top of that is custom-built to provide hands-on experience with server functionality.
+Welcome to the official documentation for **Stratus**, an ultra-lightweight .NET backend framework designed for flexibility, performance, and ease of use.
 
-### Features:
-- **Static File Support**: Easily serve static content such as images, stylesheets, and JavaScript files.
-- **Custom Static Folder**: Set up a root folder for serving all your static assets.
-- **Simple Routing**: Supports both GET and POST routing, making it easy to handle basic requests.
-- **Dynamic Routing**: Includes the ability to manage dynamic paths for more flexible routing.
-- **Template Rendering** You can render html templates with handlebars .Net
+Stratus provides a simple and customizable structure that allows developers to create their own routers and rendering engines through intuitive interfaces, rather than being forced to work within rigid structures. It’s built to give you full control over your application, ensuring you can design it exactly how you want.
+
+---
+
+## Getting Started
+
+To get started with Stratus, please check out our [installation guide](/docs/installation).
