@@ -8,15 +8,15 @@
 
 ### **Package Manager (PM)**
 ```bash
-NuGet\Install-Package Stratus -Version 1.0.0
+NuGet\Install-Package Stratus -Version 1.0.2
 ```
 
 ### **dotnet CLI**
 ```bash
-dotnet add package Stratus --version 1.0.0
+dotnet add package Stratus --version 1.0.2
 ```
 
 ### **PackageReference**
 ```XML
-<PackageReference Include="Stratus" Version="1.0.0" />
+<PackageReference Include="Stratus" Version="1.0.2" />
 ```
