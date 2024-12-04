@@ -4,33 +4,19 @@
 1. Install Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 2. Install .NET SDK (Its built on .NET 8.0): [https://dotnet.microsoft.com/download](https://dotnet.microsoft.com/download)
 
-## Steps:
+## Installation
 
-### 1. Clone the repository:
-   - Open terminal/command prompt.
-   - Navigate to your desired folder:
-     ```bash
-     cd path/to/your/folder
-     ```
-   - Clone the repo:
-     ```bash
-     git clone https://github.com/VincentBrodin/Stratus.git
-     ```
-   - Navigate to the repo folder:
-     ```bash
-     cd Stratus
-     ```
+### **Package Manager (PM)**
+```bash
+NuGet\Install-Package Stratus -Version 1.0.0
+```
 
-### 2. Build and run the demo project:
-   - Navigate to the `DemoProject` folder in the solution:
-     ```bash
-     cd DemoProject
-     ```
-   - Build the demo project:
-     ```bash
-     dotnet build
-     ```
-   - Run the demo project:
-     ```bash
-     dotnet run
-     ```
+### **dotnet CLI**
+```bash
+dotnet add package Stratus --version 1.0.0
+```
+
+### **PackageReference**
+```XML
+<PackageReference Include="Stratus" Version="1.0.0" />
+```
