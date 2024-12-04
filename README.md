@@ -26,7 +26,7 @@ dotnet add package Stratus --version 1.0.0
 ```csharp
 using Stratus;
 public static class Program {
-	public async static void Main(string[] args) {
+	public async static Task Main(string[] args) {
 		// Create a new instance of the server
 		Server server = new();
 
