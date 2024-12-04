@@ -19,7 +19,7 @@ public class Router {
 	private readonly List<Route> routes = [];
 
 	public bool HandleStaticFiles = false;
-	public string StaticFilesRoot { get; set; } = "/wwwroot";
+	public string StaticFilesRoot { get; set; } = "wwwroot";
 	public HandlerMethod StaticFilesHandler { get; set; } = (context, parameters) => {
 		return new Payload(404);
 	};
@@ -45,11 +45,14 @@ public class Router {
 				continue;
 			}
 
+
+			string staticFilesPrefix = $"/{StaticFilesRoot}";
+
 			//Serve static files
 			if (HandleStaticFiles
-				&& path.GetFirst(StaticFilesRoot.Length) == StaticFilesRoot) {
+				&& path.GetFirst(staticFilesPrefix.Length) == staticFilesPrefix) {
 				Dictionary<string, string> parameters = [];
-				parameters.Add("path", path.GetEndFromStart(StaticFilesRoot.Length + 1));
+				parameters.Add("path", path.GetEndFromStart(staticFilesPrefix.Length + 1));
 				return StaticFilesHandler(context, parameters);
 			}
 			else {

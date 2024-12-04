@@ -38,7 +38,10 @@ public class Server {
 	/// </summary>
 	public string BaseUrl { get; set; } = "http://localhost:8080/";
 
-	private readonly string wwwroot = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wwwroot");
+	/// <summary>
+	/// This gets the combined path to the Wwwroot on the system. You can change the path in the <see cref="Router.StaticFilesRoot"/> 
+	/// </summary>
+	private string Wwwroot =>  Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Router.StaticFilesRoot);
 
 	/// <summary>
 	/// The html that will be sent if an error occurs
@@ -82,7 +85,7 @@ public class Server {
 	/// <param name="path">The path to the item (in the wwwroot folder)</param>
 	/// <returns>Null or a tuple of the content in bytes and the content type as a string</returns>
 	public Payload Root(string path) {
-		string rootPath = Path.Combine(wwwroot, path);
+		string rootPath = Path.Combine(Wwwroot, path);
 		if (File.Exists(rootPath)) {
 			string contentType = GetContentType(rootPath);
 			return new Payload(File.ReadAllBytes(rootPath), contentType, 200);
@@ -96,7 +99,7 @@ public class Server {
 	/// <param name="path">The path to the item (in the wwwroot folder)</param>
 	/// <returns>The content as text</returns>
 	public string? RootAsText(string path) {
-		string rootPath = Path.Combine(wwwroot, path);
+		string rootPath = Path.Combine(Wwwroot, path);
 		if (File.Exists(rootPath)) {
 			return File.ReadAllText(rootPath);
 		}
@@ -109,7 +112,7 @@ public class Server {
 	/// <param name="path">The path to the item (in the wwwroot folder)</param>
 	/// <returns>String to the path (does not check if the file exists)</returns>
 	public string RootPath(string path) {
-		return Path.Combine(wwwroot, path);
+		return Path.Combine(Wwwroot, path);
 	}
 
 	#region Baking

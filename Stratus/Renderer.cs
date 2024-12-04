@@ -12,7 +12,7 @@ public class Renderer(Server connectedServer) {
 
 		if(!pagesTemplates.TryGetValue(pageName, out string? template)) {
 			Console.WriteLine($"Page {pageName} does not exist");
-			return new Payload(404);
+			return Server.BakeHtml("Erorr: 404 <br> Page is missing", 404);
 		}
 
 		var page = Handlebars.Compile(template!);
@@ -30,12 +30,11 @@ public class Renderer(Server connectedServer) {
 
 	public void RegisterPartials() {
 		string? layout = Server.RootAsText("views/layout/Main.hbs");
-		if (layoutTemplate == null) {
-			Console.WriteLine($"Missing views/layout/Main.hbs file from wwwroot.");
-			return;
+		if (layout == null) {
+			Console.WriteLine($"Missing views/layout/Main.hbs file from {Server.Router.StaticFilesRoot}.");
 		}
 		else {
-			layoutTemplate = layout!;
+			layoutTemplate = layout;
 		}
 
 		if (Directory.Exists(Server.RootPath("views/pages"))) {
@@ -48,7 +47,7 @@ public class Renderer(Server connectedServer) {
 
 		}
 		else {
-			Console.WriteLine("Missing views/pages from wwwroot");
+			Console.WriteLine($"Missing views/pages from {Server.Router.StaticFilesRoot}");
 		}
 
 		if (Directory.Exists(Server.RootPath("views/partials"))) {
@@ -60,9 +59,7 @@ public class Renderer(Server connectedServer) {
 			}
 		}
 		else {
-			Console.WriteLine("Missing views/partials from wwwroot");
+			Console.WriteLine($"Missing views/partials from {Server.Router.StaticFilesRoot}");
 		}
-
-
 	}
 }
