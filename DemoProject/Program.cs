@@ -29,7 +29,6 @@ public static class Program {
 			}, 200, "Stratus");
 		});
 
-
 		server.Router.Get("/about", (context, parameters) => {
 			return server.Renderer.RenderPage("About", new {
 			}, 200);

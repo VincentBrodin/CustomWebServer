@@ -95,12 +95,12 @@ public class Server {
 	/// </summary>
 	/// <param name="path">The path to the item (in the wwwroot folder)</param>
 	/// <returns>The content as text</returns>
-	public string RootAsText(string path) {
+	public string? RootAsText(string path) {
 		string rootPath = Path.Combine(wwwroot, path);
 		if (File.Exists(rootPath)) {
 			return File.ReadAllText(rootPath);
 		}
-		return "";
+		return null;
 	}
 
 	/// <summary>

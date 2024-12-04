@@ -21,8 +21,6 @@ dotnet add package Stratus --version 1.0.0
 <PackageReference Include="Stratus" Version="1.0.0" />
 ```
 
-
-
 ## Setup
 
 ```csharp
@@ -74,7 +72,21 @@ public static class Program {
 	}
 
 }
+```
 
+## Tips for Managing `wwwroot` Folder in .NET Projects
 
+If you want to automatically copy the contents of your `wwwroot` folder to the build output directory during the build process, you can add the following snippet to your `.csproj` file. This will ensure that all files in the `wwwroot` directory are included in the build output.
+
+**Note:** This approach will not delete any files from the output's `wwwroot` folder, so if you need to remove any files manually, you will have to do so separately.
+
+### Add the following to your `.csproj` file:
+
+```xml
+<ItemGroup>
+  <None Update="wwwroot\**">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
 ```
 
