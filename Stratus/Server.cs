@@ -27,6 +27,7 @@ public class Server {
 	public HttpListener Listener { get; } = new();
 	public Router Router { get; } = new();
 	public Renderer Renderer { get; }
+	public SessionManager SessionManager { get; set; } = new();
 
 	/// <summary>
 	/// The state of the server
@@ -177,8 +178,8 @@ public class Server {
 			HttpListenerRequest request = context.Request;
 			HttpListenerResponse response = context.Response;
 
-			Console.WriteLine($"Request URL: {request.Url}");
-			Console.WriteLine($"Request Raw URL: {request.RawUrl}");
+			//Console.WriteLine($"Request URL: {request.Url}");
+			//Console.WriteLine($"Request Raw URL: {request.RawUrl}");
 
 			Payload routeOutput = Router.MatchRoute(context);
 

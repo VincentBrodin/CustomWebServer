@@ -35,6 +35,7 @@ public static class Program {
 			}, 200);
 		});
 
+
 		var (titles, paths) = docs.GetStaticRoutes();
 		object staticRoutes = titles.Zip(paths, (title, path) => new {
 			title,
